@@ -11,7 +11,7 @@ El acuífero de Apan es una reserva de agua estratégica para la Cuenca del Vall
 
 ## Funcionamiento del algoritmo
 
-El método se basa en el algoritmo de inversión conjunta propuesto por Gallardo et al. (2003, 2005), el cual minimiza una función objetivo, la cual busca reducir la suma cuadrática de la diferencia entre los datos gravimétricos y magnéticos observados y aquellos calculados para el modelo del subsuelo. El algoritmo privilegia los modelos de variaciones suaves de los relieves de cada capa; lo que se controla a través de parámetros de regularización. Estos parámetros son seleccionados por el usuario, quien a través de experimentación debe buscar que los relieves sean suaves, pero geológicamente razonables.
+El método se basa en el algoritmo de inversión conjunta propuesto por Gallardo et al. (2003, 2005), el cual minimiza una función objetivo, la cual busca reducir la suma cuadrática de la diferencia entre los datos gravimétricos y magnéticos observados y aquellos calculados para el modelo del subsuelo. El algoritmo prioriza los modelos de variaciones suaves de los relieves de cada capa; lo que se controla a través de parámetros de regularización. Estos parámetros son seleccionados por el usuario, quien a través de experimentación debe buscar que los relieves sean suaves, pero geológicamente razonables.
 
 ### Definición del modelo inicial
 El modelo del subsuelo se construye a partir de un conjunto de prismas rectangulares que definen una serie de capas geológicas, donde cada capa posee propiedades físicas (densidad y magnetización) 
