@@ -7,7 +7,7 @@ Este repositorio contiene las herramientas desarrolladas como parte de mi tesis 
 
 ##  Motivación
 
-El acuífero de Apan es una reserva de agua estratégica para la Cuenca del Valle de México. Sin embargo, su geometría tridimensional y sus características internas son poco conocidas. Este proyecto tuvo como objetivo principal generar un modelo detallado para delimitar la extensión de la cuenca y las unidades geológicas que la conforman, así como la estructura subterranea del acuífero, aportando información crucial para la actualización de los modelos existentes del acuifero y una futura gestión sostenible de los recursos hídricos del estado de Hidalgo.
+El acuífero de Apan es una reserva de agua estratégica para la Cuenca del Valle de México. Sin embargo, su geometría tridimensional y sus características internas son poco conocidas. Este proyecto tuvo como objetivo principal generar un modelo detallado para delimitar la extensión de la cuenca y las unidades geológicas que la conforman, así como la estructura subterránea del acuífero, aportando información crucial para la actualización de los modelos existentes del acuifero y una futura gestión sostenible de los recursos hídricos del estado de Hidalgo.
 
 ## Funcionamiento del algoritmo
 
