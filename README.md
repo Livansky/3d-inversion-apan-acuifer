@@ -1,3 +1,5 @@
+<div align="justify">
+
 # Modelo 3D del Acuífero de Apan mediante Inversión Conjunta de Datos Geofísicos
 
 ![Banner con un mapa de la tesis] (/images/unnamed.png)
@@ -74,6 +76,8 @@ El algoritmo Gmlayers tiene la capacidad de manejar estructuras tridimensionales
 > * Gallardo-Delgado, L.A., Pérez-Flores, M.A., & Gómez-Treviño, E. (2003). A versatile algorithm for joint 3D inversion of gravity and magnetic data. *GEOPHYSICS, 68(3)*, 949-959.
 > * Gallardo, L.A., Pérez-Flores, M.A., & Gómez-Treviño, E. (2005). Refinement of three-dimensional multilayer models of basins and crustal environments by inversion of gravity and magnetic data. *Tectonophysics, 397(1-2)*, 37-54. 
 > * 
+
+</div>
 
 ## Mis Herramientas de Visualización
 
