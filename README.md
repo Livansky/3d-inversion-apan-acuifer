@@ -1,6 +1,6 @@
 # Modelo 3D del Acuífero de Apan mediante Inversión Conjunta de Datos Geofísicos
 
-![Banner con un mapa de la tesis] /images/unnamed.png
+![Banner con un mapa de la tesis] (/images/unnamed.png)
 
 Este repositorio contiene las herramientas desarrolladas como parte de mi tesis de licenciatura para la visualización, análisis e interpretación de un modelo geofísico del acuífero de Apan, Hidalgo. El modelo fue generado utilizando el algoritmo `gmlayers` a partir de la inversión conjunta tridimensional de datos gravimétricos y magnéticos.
 
