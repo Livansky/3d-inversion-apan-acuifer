@@ -16,44 +16,63 @@ El método se basa en el algoritmo de inversión conjunta propuesto por Gallardo
 El modelo del subsuelo se construye a partir de un conjunto de prismas rectangulares que definen una serie de capas geológicas, donde cada capa posee propiedades físicas (densidad y magnetización) 
 
 La densidad de cada capa no es necesariamente constante, sino que se modela como una función cuadrática de la profundidad (z): 
-
+<p align="center">
 $\rho(z)=a+bz+cz^{2}$
-
+</p>
 y un vector de magnetización:
-
+<p align="center">
 $\mathbf{M} = M_x \hat{\mathbf{i}} + M_y \hat{\mathbf{j}} + M_z \hat{\mathbf{k}}$,
+</p>
 
-que pueden variar con la profundidad. La inversión busca determinar la profundidad de las interfaces superior $(h_t)$ e inferior ($h_b$) entre estas capas.
-
+que pueden variar con la profundidad. La inversión busca determinar la profundidad de las interfaces superior $$(h_t)$$ e inferior $$(h_b)$$ entre estas capas.
 
 El modelo inicial se construye utilizando datos geológicos y geofísicos previos, que permiten establecer una primera estimación razonable de estos tres elementos para cada capa. Constituyen el punto de partida y definen la zona de búsqueda para la actualización automática del modelo empleando optimización iterativa que se lleva a cabo considerando los siguientes elementos:
 
-#### Función objetivo
+#### a) Función objetivo
 En cada iteración, Gmlayers actualiza el modelo empleando un algoritmo de programación cuadrática el cual se basa en reducir la función objetivo, que combina el desajuste a los datos observados y la rugosidad del relieve de cada capa. La función objetivo (F) a minimizar se define como:
 
 $$\mathbf{F}(\mathbf{m}) = \min  \| \mathbf{d}_g - \mathbf{g}_z(\mathbf{m}) \|^2_{\mathbf{C}^{-1}_{ddg}} + \| \mathbf{d}_T - \mathbf{T}_t(\mathbf{m}) \|^2_{\mathbf{C}^{-1}_{ddT}} + \| \mathbf{D} \mathbf{m} \|^2_{\mathbf{C}^{-1}_{DD}} + \| \mathbf{m} - \mathbf{m}_R \|^2_{\mathbf{C}^{-1}_{RR}}$$
 
-#### Restricciones de búsqueda
+#### b) Restricciones de búsqueda
 Al emplear técnicas de optimización restringida (programación cuadrática) Gmlayers permite imponer restricciones a los parámetros para reducir la búsqueda y asegurar la factibilidad del modelo. Estas restricciones se aplican como condiciones de desigualdad:
 
-$\mathbf{m}_{\text{min}} \leq \mathbf{m} \leq \mathbf{m}_{\text{max}}, \quad \Delta \mathbf{m}_{\text{min}} \leq \Delta \mathbf{m} \leq \Delta \mathbf{m}_{\text{max}}$
+$$\mathbf{m}_{\text{min}} \leq \mathbf{m} \leq \mathbf{m}_{\text{max}}, \quad \Delta \mathbf{m}_{\text{min}} \leq \Delta \mathbf{m} \leq \Delta \mathbf{m}_{\text{max}}$$
+
+Donde \( \mathbf{m}_{\text{min}} \) y \( \mathbf{m}_{\text{max}} \) representan los límites inferiores y superiores para la profundidad y espesor respectivamente. Para cada prisma en cada capa estas restricciones aseguran que el modelo generado sea consistente y evita la superposición de capas y otras inconsistencias geológicas.
+
+#### c) Búsqueda local y actualización del modelo}
+
+El siguiente paso consiste en realizar una búsqueda lineal alrededor de un modelo de referencia $(\mathbf{m}_0)$. Esto se logra mediante una expansión de Taylor al primer orden de la respuesta gravimétrica $\(\mathbf{g}_z\)$ y magnética $\(\mathbf{T}_t\)$ con respecto a la profundidad $(\mathbf{m})$ de cada prisma.
+<p align="center">
+$g_z(m) \approx g_z(m_0) + A_g(m_0) (m - m_0)$,
+</p>
+<p align="center">
+$T_t(m) \approx T_t(m_0) + A_T(m_0) (m - m_0)$
+</p>
+
+#### d) Evaluación y convergencia
+Dada la naturaleza de la función objetivo y las restricciones lineales impuestas, para resolver el problema de minimización planteado en la función objetivo, Gmlayers emplea el algoritmo de programación cuadrática de [48]. 
+
+El proceso iterativo de ajuste continúa hasta que se alcanza la convergencia, es decir, hasta llegar a un punto estacionario o hasta que las diferencias entre los datos observados y los modelados se encuentren dentro de un rango aceptable. Esta convergencia se evalúa mediante los siguientes criterios:
 
 
-que incluye:
+1. Cuando el ajuste entre los datos observados y los modelados es comparable con el nivel de error esperado en los datos. Esto se evalúa mediante el error cuadrático medio normalizado (RMS):
+<p align="center">
+ $RMS = \sqrt{\frac{\sum_{i=1}^n \left( d_i - \hat{d}_i \right)^2}{n}}$,
+</p>
 
-1.  **El desajuste con los datos** gravimétricos y magnéticos observados.
-2.  **La similitud con un modelo geológico *a priori***.
-3.  **La suavidad del relieve** de las capas para obtener modelos geológicamente realistas.
-4.  **Restricciones geológicas y geométricas** (e.g., afloramientos en superficie, datos de pozos) para reducir la ambigüedad de la solución.
+donde $\(d_i\)$ son los datos observados, $\(\hat{d}_i\)$ son los datos predichos por el modelo, y $\(n\)$ es el número total de datos.
 
+2. Cuando las profundidades superiores $\(h_t\)$ e inferiores $\(h_b\)$ de los prismas no fluctúan significativamente en iteraciones sucesivas.
 
+3. Cuando la suavidad del modelo es adecuada, evaluada mediante los términos de regularización que penalizan grandes variaciones en las profundidades de los prismas.
 
-
+El algoritmo Gmlayers tiene la capacidad de manejar estructuras tridimensionales donde los límites de los prismas que definen el subsuelo no están restringidos a ser planos o simples, sino que deben adaptarse mejor a las estructuras tanto conocidas como esperadas 
 
 
 > **Referencias clave:**
-> * Gallardo-Delgado, L.A., Pérez-Flores, M.A., & Gómez-Treviño, E. (2003). A versatile algorithm for joint 3D inversion of gravity and magnetic data. [cite_start]*GEOPHYSICS, 68(3)*, 949-959. [cite: 2879]
-> * Gallardo, L.A., Pérez-Flores, M.A., & Gómez-Treviño, E. (2005). Refinement of three-dimensional multilayer models of basins and crustal environments by inversion of gravity and magnetic data. [cite_start]*Tectonophysics, 397(1-2)*, 37-54. [cite: 8]
+> * Gallardo-Delgado, L.A., Pérez-Flores, M.A., & Gómez-Treviño, E. (2003). A versatile algorithm for joint 3D inversion of gravity and magnetic data. *GEOPHYSICS, 68(3)*, 949-959.
+> * Gallardo, L.A., Pérez-Flores, M.A., & Gómez-Treviño, E. (2005). Refinement of three-dimensional multilayer models of basins and crustal environments by inversion of gravity and magnetic data. *Tectonophysics, 397(1-2)*, 37-54. 
 > * 
 
 ## Mis Herramientas de Visualización
