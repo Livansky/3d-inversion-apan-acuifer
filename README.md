@@ -38,7 +38,7 @@ Al emplear técnicas de optimización restringida (programación cuadrática) Gm
 
 $$\mathbf{m}_{\text{min}} \leq \mathbf{m} \leq \mathbf{m}_{\text{max}}, \quad \Delta \mathbf{m}_{\text{min}} \leq \Delta \mathbf{m} \leq \Delta \mathbf{m}_{\text{max}}$$
 
-Donde \( \mathbf{m}_{\text{min}} \) y \( \mathbf{m}_{\text{max}} \) representan los límites inferiores y superiores para la profundidad y espesor respectivamente. Para cada prisma en cada capa estas restricciones aseguran que el modelo generado sea consistente y evita la superposición de capas y otras inconsistencias geológicas.
+Donde $m_{min}$ y $m_{max}$ representan los límites inferiores y superiores para la profundidad y espesor respectivamente. Para cada prisma en cada capa estas restricciones aseguran que el modelo generado sea consistente y evita la superposición de capas y otras inconsistencias geológicas.
 
 #### c) Búsqueda local y actualización del modelo}
 
