@@ -14,16 +14,14 @@ El acuífero de Apan es una reserva de agua estratégica para la Cuenca del Vall
 El método se basa en el algoritmo de inversión conjunta propuesto por Gallardo et al. (2003, 2005), el cual minimiza una función objetivo, la cual busca reducir la suma cuadrática de la diferencia entre los datos gravimétricos y magnéticos observados y aquellos calculados para el modelo del subsuelo. El algoritmo prioriza los modelos de variaciones suaves de los relieves de cada capa; lo que se controla a través de parámetros de regularización. Estos parámetros son seleccionados por el usuario, quien a través de experimentación debe buscar que los relieves sean suaves, pero geológicamente razonables.
 
 ### Definición del modelo inicial
-El modelo del subsuelo se construye a partir de un conjunto de prismas rectangulares que definen una serie de capas geológicas, donde cada capa posee propiedades físicas (densidad y magnetización) 
+El modelo del subsuelo se construye a partir de un conjunto de prismas rectangulares que definen una serie de capas geológicas, donde cada capa posee propiedades físicas (densidad y magnetización). La densidad de cada capa no es necesariamente constante, sino que se modela como una función cuadrática de la profundidad (z): 
 
-La densidad de cada capa no es necesariamente constante, sino que se modela como una función cuadrática de la profundidad (z): 
-<p align="center">
 $\rho(z)=a+bz+cz^{2}$
-</p>
+
 y un vector de magnetización:
-<p align="center">
+
 $\mathbf{M} = M_x \hat{\mathbf{i}} + M_y \hat{\mathbf{j}} + M_z \hat{\mathbf{k}}$,
-</p>
+
 
 que pueden variar con la profundidad. La inversión busca determinar la profundidad de las interfaces superior $$(h_t)$$ e inferior $$(h_b)$$ entre estas capas.
 
@@ -74,7 +72,7 @@ El algoritmo Gmlayers tiene la capacidad de manejar estructuras tridimensionales
 > **Referencias clave:**
 > * Gallardo-Delgado, L.A., Pérez-Flores, M.A., & Gómez-Treviño, E. (2003). A versatile algorithm for joint 3D inversion of gravity and magnetic data. *GEOPHYSICS, 68(3)*, 949-959.
 > * Gallardo, L.A., Pérez-Flores, M.A., & Gómez-Treviño, E. (2005). Refinement of three-dimensional multilayer models of basins and crustal environments by inversion of gravity and magnetic data. *Tectonophysics, 397(1-2)*, 37-54. 
-> * 
+> * Gill, P. E., Murray, W., Saunders, M. A., & Wright, M. H. (1986). Fortran package for constrained linear least-squares and convex quadratic programming: User’s guide for LSSOL (Version 1.0) (Tech. Rep.). Systems Optimization Laboratory, Stanford University. https://stanford.edu/group/SOL/guides/lssol.pdf.
 
 </div>
 
