@@ -28,7 +28,7 @@ que pueden variar con la profundidad. La inversión busca determinar la profundi
 El modelo inicial se construye utilizando datos geológicos y geofísicos previos, que permiten establecer una primera estimación razonable de estos tres elementos para cada capa. Constituyen el punto de partida y definen la zona de búsqueda para la actualización automática del modelo empleando optimización iterativa que se lleva a cabo considerando los siguientes elementos:
 
 #### a) Función objetivo
-En cada iteración, Gmlayers actualiza el modelo empleando un algoritmo de programación cuadrática el cual se basa en reducir la función objetivo, que combina el desajuste a los datos observados y la rugosidad del relieve de cada capa. La función objetivo (F) a minimizar se define como:
+En cada iteración, Gmlayers actualiza el modelo empleando un algoritmo de programación cuadrática (Gill et al., 1986), el cual se basa en reducir la función objetivo, que combina el desajuste a los datos observados y la rugosidad del relieve de cada capa. La función objetivo (F) a minimizar se define como:
 
 $$\mathbf{F}(\mathbf{m}) = \min  \| \mathbf{d}_g - \mathbf{g}_z(\mathbf{m}) \|^2_{\mathbf{C}^{-1}_{ddg}} + \| \mathbf{d}_T - \mathbf{T}_t(\mathbf{m}) \|^2_{\mathbf{C}^{-1}_{ddT}} + \| \mathbf{D} \mathbf{m} \|^2_{\mathbf{C}^{-1}_{DD}} + \| \mathbf{m} - \mathbf{m}_R \|^2_{\mathbf{C}^{-1}_{RR}}$$
 
