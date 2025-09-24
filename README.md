@@ -32,6 +32,22 @@ En cada iteración, Gmlayers actualiza el modelo empleando un algoritmo de progr
 
 $$\mathbf{F}(\mathbf{m}) = \min  \| \mathbf{d}_g - \mathbf{g}_z(\mathbf{m}) \|^2_{\mathbf{C}^{-1}_{ddg}} + \| \mathbf{d}_T - \mathbf{T}_t(\mathbf{m}) \|^2_{\mathbf{C}^{-1}_{ddT}} + \| \mathbf{D} \mathbf{m} \|^2_{\mathbf{C}^{-1}_{DD}} + \| \mathbf{m} - \mathbf{m}_R \|^2_{\mathbf{C}^{-1}_{RR}}$$
 
+Donde cada variable representa lo siguiente:
+
+| Símbolo      | Descripción                                                |
+|-------------|------------------------------------------------------------|
+| $d_g$         | Vector de los datos de gravedad observados                |
+| $m$           | Modelo (profundidad a cada prisma para cada capa)         |
+| $g_z(m)$      | Respuesta gravimétrica del modelo actual                  |
+| $C⁻¹_{ddg}$     | Matriz de covarianza de los datos de gravedad             |
+| $d_T$         | Vector de los datos magnéticos observados                |
+| $T_t(m)$      | Respuesta magnética del modelo actual                     |
+| $C⁻¹_{ddT}$     | Matriz de covarianza de los datos magnéticos             |
+| $D$           | Operador de suavidad                                      |
+| $m_R$         | Modelo a priori                                           |
+| $C⁻¹_{RR}$      | Matriz de covarianza del modelo a priori                 |
+
+
 #### b) Restricciones de búsqueda
 Al emplear técnicas de optimización restringida (programación cuadrática) Gmlayers permite imponer restricciones a los parámetros para reducir la búsqueda y asegurar la factibilidad del modelo. Estas restricciones se aplican como condiciones de desigualdad:
 
@@ -56,9 +72,12 @@ El proceso iterativo de ajuste continúa hasta que se alcanza la convergencia, e
 
 
 1. Cuando el ajuste entre los datos observados y los modelados es comparable con el nivel de error esperado en los datos. Esto se evalúa mediante el error cuadrático medio normalizado (RMS):
+   
 <p align="center">
- $RMS = \sqrt{\frac{\sum_{i=1}^n \left( d_i - \hat{d}_i \right)^2}{n}}$,
+  $RMS = \sqrt{\frac{\sum_{i=1}^n \left( d_i - \hat{d}_i \right)^2}{n}}$,
 </p>
+
+
 
 donde $\(d_i\)$ son los datos observados, $\(\hat{d}_i\)$ son los datos predichos por el modelo, y $\(n\)$ es el número total de datos.
 
@@ -66,7 +85,7 @@ donde $\(d_i\)$ son los datos observados, $\(\hat{d}_i\)$ son los datos predicho
 
 3. Cuando la suavidad del modelo es adecuada, evaluada mediante los términos de regularización que penalizan grandes variaciones en las profundidades de los prismas.
 
-El algoritmo Gmlayers tiene la capacidad de manejar estructuras tridimensionales donde los límites de los prismas que definen el subsuelo no están restringidos a ser planos o simples, sino que deben adaptarse mejor a las estructuras tanto conocidas como esperadas 
+El algoritmo Gmlayers tiene la capacidad de manejar estructuras tridimensionales donde los límites de los prismas que definen el subsuelo no están restringidos a ser planos o simples, sino que deben adaptarse mejor a las estructuras tanto conocidas como esperadas. 
 
 
 > **Referencias clave:**
