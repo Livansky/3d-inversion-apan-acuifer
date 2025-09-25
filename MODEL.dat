@@ -1,0 +1,27 @@
+  Sintetic model made to test the main program layer
+*** Number of gravity and magnetic registers
+     0,0
+*** Number of surfaces to consider
+      0
+**********************************************************************************************
+***                        Parameters by layer
+Lay.  Fix=0     a           b           c            |M|       inc      dec        sder  
+#    Var=1  (gr/cm3)  (gr/cm3/km) (gr/cm3/km2)    (Amp/m)    (Deg)    (Deg) (km/km or km/km2)
+#
+#
+#  
+**********************************************************************************************
+*** Kind of regularization 0=None, 1=> 1st der., 2=>2nd der.
+       #
+*** Regularization model 0=> flatest model,  1=>Initial model
+       #
+*** Limit coordinates S-N and W-E (km) for a regular grid of prisms
+        #  #   #   #
+*** Number of prisms (South-North and West-East directions)
+         # , #         
+*** Size of border prisms  (South-North and West-East)
+       #,   #
+**********************************************************************************************
+***     Depth to each prism (West to East and South to North) (km) from upper to lower surfaces
+min.   depth     max.    sdepth   Min.-Thickness    Max.Thickness   (layer behind surface)
+**********************************************************************************************

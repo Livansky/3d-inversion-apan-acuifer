@@ -1,0 +1,6 @@
+# Tratar todos los archivos como texto y manejar los finales de línea automáticamente
+* text=auto
+
+# Forzar que los archivos de Fortran siempre usen LF
+*.for text eol=lf
+*.FOR text eol=lf
