@@ -127,7 +127,19 @@ Una definición clara de las capas geológicas que usarás en el modelo, ordenad
 
 Un mapa geológico del área para saber qué unidad geológica aflora en cada punto y un modelo digital de elevación para conocer la topografía.
 
+### Pasos para realizar la inversión usando el algoritmo gmlayers
 
+#### Discretizar el modelo y la geología
+
+El primer paso es crear una rejilla regular sobre tu area de estudio de n filas por m columnas, tú decides el tamaño de los prismas en km y la cantidad. Para hacerlo te puedes apoyar de software como Surfer, solo recuerda, que al final necesitaras saber las coordenadas UTM del centro de cada prisma.
+
+El segundo paso consiste en asignar la topografía promedio del área correspondiente a cada prisma. Puedes hacer una interpolación del tipo nearest neighbor.
+
+El siguiente paso consiste en asignar a cada prisma una unidad geologica aflorante según tu mapa geologica y las capas que propusiste a utilizar, recuerda que entre más capas, el modelo podría no distinguirlas unas de otras.
+
+#### Generar los archivos de restricciones de capas
+
+ejecuta `program1.exe` para cada
 
 
 
