@@ -107,8 +107,8 @@ El algoritmo `gmlayers` produce archivos de texto con las profundidades de las i
 Para utilizar estas herramientas, clona el repositorio y asegúrate de tener las dependencias necesarias.
 
 ```bash
-git clone https://github.com/Livansky/modelo-acuifero-apan.git
-cd modelo-acuifero-apan
+git clone git@github.com:Livansky/3d-inversion-apan-acuifer.git
+cd 3d-inversion-apan-acuifer
 pip install -r requirements.txt
 ```
 
