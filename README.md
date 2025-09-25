@@ -123,6 +123,7 @@ Un archivo de texto `mfield.txt` similar al de gravedad, pero que además incluy
 
 Una definición clara de las capas geológicas que usarás en el modelo, ordenadas de la más superficial a la más profunda. Para cada capa, necesitas una estimación inicial de sus propiedades (densidad y magnetización)
 
+![Texto alternativo](/images/layers.png)
 
 
 #### Geología Superficial y Topografía: 
