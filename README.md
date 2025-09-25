@@ -49,7 +49,7 @@ Donde cada variable representa lo siguiente:
 
 
 #### b) Restricciones de búsqueda
-Al emplear técnicas de optimización restringida (programación cuadrática) Gmlayers permite imponer restricciones a los parámetros para reducir la búsqueda y asegurar la factibilidad del modelo. Estas restricciones se aplican como condiciones de desigualdad:
+Al emplear técnicas de optimización restringida (programación cuadrática) `gmlayers` permite imponer restricciones a los parámetros para reducir la búsqueda y asegurar la factibilidad del modelo. Estas restricciones se aplican como condiciones de desigualdad:
 
 $$\mathbf{m}_{\text{min}} \leq \mathbf{m} \leq \mathbf{m}_{\text{max}}, \quad \Delta \mathbf{m}_{\text{min}} \leq \Delta \mathbf{m} \leq \Delta \mathbf{m}_{\text{max}}$$
 
@@ -85,7 +85,7 @@ donde $\(d_i\)$ son los datos observados, $\(\hat{d}_i\)$ son los datos predicho
 
 3. Cuando la suavidad del modelo es adecuada, evaluada mediante los términos de regularización que penalizan grandes variaciones en las profundidades de los prismas.
 
-El algoritmo Gmlayers tiene la capacidad de manejar estructuras tridimensionales donde los límites de los prismas que definen el subsuelo no están restringidos a ser planos o simples, sino que deben adaptarse mejor a las estructuras tanto conocidas como esperadas. 
+El algoritmo `gmlayers` tiene la capacidad de manejar estructuras tridimensionales donde los límites de los prismas que definen el subsuelo no están restringidos a ser planos o simples, sino que deben adaptarse mejor a las estructuras tanto conocidas como esperadas. 
 
 
 > **Referencias clave:**
@@ -107,7 +107,7 @@ El algoritmo `gmlayers` produce archivos de texto con las profundidades de las i
 Para utilizar estas herramientas, clona el repositorio y asegúrate de tener las dependencias necesarias.
 
 ```bash
-git clone [https://github.com/tu-usuario/modelo-acuifero-apan.git](https://github.com/tu-usuario/modelo-acuifero-apan.git)
+git clone https://github.com/Livansky/modelo-acuifero-apan.git
 cd modelo-acuifero-apan
 pip install -r requirements.txt
 ```
