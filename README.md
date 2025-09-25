@@ -95,13 +95,6 @@ El algoritmo `gmlayers` tiene la capacidad de manejar estructuras tridimensional
 
 </div>
 
-## Mis Herramientas de Visualización
-
-El algoritmo `gmlayers` produce archivos de texto con las profundidades de las interfaces para cada prisma del modelo. Para interpretar estos resultados, desarrollé dos herramientas en Python:
-
-1.  **`visualizador_cortes.py`**: Este script toma el archivo de salida del modelo y genera secciones transversales (cortes geológicos) en cualquier dirección (N-S o E-W), permitiendo visualizar la estructura interna de la cuenca.
-2.  **`generador_mapas_espesor.py`**: Esta herramienta calcula y grafica los mapas de espesores para cada una de las capas geológicas definidas en el modelo, ayudando a identificar las zonas de mayor acumulación de materiales.
-
 ## Instalación
 
 Para utilizar estas herramientas, clona el repositorio y asegúrate de tener las dependencias necesarias.
@@ -134,6 +127,15 @@ A continuación se muestran algunos de los resultados generados con estas herram
 **Sección Geológica A-A'**
 ![Corte geológico A-A'](imagenes/resultado_corte_A-A.png)
 *Esta sección muestra claramente la estructura de graben de la cuenca, delimitada por la falla Apan-Tlaloc.*
+
+## Mis Herramientas de Visualización
+
+El algoritmo `gmlayers` produce archivos de texto con las profundidades de las interfaces para cada prisma del modelo. Para interpretar estos resultados, desarrollé dos herramientas en Python:
+
+1.  **`visualizador_cortes.py`**: Este script toma el archivo de salida del modelo y genera secciones transversales (cortes geológicos) en cualquier dirección (N-S o E-W), permitiendo visualizar la estructura interna de la cuenca.
+2.  **`generador_mapas_espesor.py`**: Esta herramienta calcula y grafica los mapas de espesores para cada una de las capas geológicas definidas en el modelo, ayudando a identificar las zonas de mayor acumulación de materiales.
+
+
 
 ## Contacto
 
