@@ -107,9 +107,45 @@ pip install -r requirements.txt
 
 ## Uso y Ejemplos
 
-La forma más sencilla de ver cómo funcionan las herramientas es a través del Jupyter Notebook incluido en la carpeta `/notebooks`.
+Qué necesitas tener antes de empezar?
 
-**`notebooks/2_Visualizacion_del_Modelo.ipynb`**
+Datos Gravimétricos: Un archivo de texto gfield.txt con columnas para las coordenadas (Norte, Este), la elevación (Z), el valor de la anomalía (g) y su incertidumbre (sg).
+
+
+
+Datos Magnéticos: Un archivo de texto (en tu tesis, mfield.txt) similar al de gravedad, pero que además incluya al inicio los valores de inclinación y declinación del campo geomagnético.
+
+
+Modelo Geológico Conceptual ⛰️:
+
+Estratigrafía Geofísica: Una definición clara de las capas geológicas que usarás en el modelo, ordenadas de la más superficial a la más profunda. Para cada capa, necesitas una estimación inicial de sus propiedades (densidad y magnetización). En tu tesis, por ejemplo, definiste 7 capas que van desde sedimentos hasta las calizas del basamento.
+
+
+
+
+Geología Superficial y Topografía: Un mapa geológico del área para saber qué unidad rocosa aflora en cada punto y un modelo digital de elevación para conocer la topografía.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 En este notebook se muestra un ejemplo completo:
 * Carga de un archivo de salida de `gmlayers` de muestra (de `datos/gmlayers_output_muestra.txt`).
