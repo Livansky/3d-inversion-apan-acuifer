@@ -109,21 +109,15 @@ pip install -r requirements.txt
 
 Qué necesitas tener antes de empezar?
 
-Datos Gravimétricos: Un archivo de texto gfield.txt con columnas para las coordenadas (Norte, Este), la elevación (Z), el valor de la anomalía (g) y su incertidumbre (sg).
+Datos Gravimétricos: Un archivo de texto gfield.txt con columnas para las coordenadas UTM (Norte, Este en km), la elevación (Z en km), el valor de la anomalía (g en mgal) y su incertidumbre (sg en mgal).
 
 
-
-Datos Magnéticos: Un archivo de texto (en tu tesis, mfield.txt) similar al de gravedad, pero que además incluya al inicio los valores de inclinación y declinación del campo geomagnético.
-
-
-Modelo Geológico Conceptual ⛰️:
-
-Estratigrafía Geofísica: Una definición clara de las capas geológicas que usarás en el modelo, ordenadas de la más superficial a la más profunda. Para cada capa, necesitas una estimación inicial de sus propiedades (densidad y magnetización). En tu tesis, por ejemplo, definiste 7 capas que van desde sedimentos hasta las calizas del basamento.
+Datos Magnéticos: Un archivo de texto mfield.txt similar al de gravedad, pero que además incluya al inicio los valores de inclinación y declinación del campo geomagnético, para la fecha y ubicación de los datos.
 
 
+Modelo Geológico Conceptual ⛰️: Una definición clara de las capas geológicas que usarás en el modelo, ordenadas de la más superficial a la más profunda. Para cada capa, necesitas una estimación inicial de sus propiedades (densidad y magnetización)
 
-
-Geología Superficial y Topografía: Un mapa geológico del área para saber qué unidad rocosa aflora en cada punto y un modelo digital de elevación para conocer la topografía.
+Geología Superficial y Topografía: Un mapa geológico del área para saber qué unidad geológica aflora en cada punto y un modelo digital de elevación para conocer la topografía.
 
 
 
@@ -146,11 +140,6 @@ Geología Superficial y Topografía: Un mapa geológico del área para saber qu�
 
 
 
-
-En este notebook se muestra un ejemplo completo:
-* Carga de un archivo de salida de `gmlayers` de muestra (de `datos/gmlayers_output_muestra.txt`).
-* Uso de la herramienta `visualizador_cortes` para generar un perfil.
-* Uso de la herramienta `generador_mapas_espesor` para crear el mapa de la capa de sedimentos.
 
 ## Resultados de la Tesis
 
