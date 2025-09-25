@@ -123,6 +123,8 @@ Un archivo de texto `mfield.txt` similar al de gravedad, pero que además incluy
 
 Una definición clara de las capas geológicas que usarás en el modelo, ordenadas de la más superficial a la más profunda. Para cada capa, necesitas una estimación inicial de sus propiedades (densidad y magnetización)
 
+![Texto alternativo](/images/layers.png)
+
 #### Geología Superficial y Topografía: 
 
 Un mapa geológico del área para saber qué unidad geológica aflora en cada punto y un modelo digital de elevación para conocer la topografía.
@@ -131,11 +133,11 @@ Un mapa geológico del área para saber qué unidad geológica aflora en cada pu
 
 #### Discretizar el modelo y la geología
 
-El primer paso es crear una rejilla regular sobre tu area de estudio de n filas por m columnas, tú decides el tamaño de los prismas en km y la cantidad. Para hacerlo te puedes apoyar de software como Surfer, solo recuerda, que al final necesitaras saber las coordenadas UTM del centro de cada prisma.
+El primer paso es crear una rejilla regular sobre tu area de estudio de n filas por m columnas, tú decides el tamaño de los prismas en km y la cantidad. Para hacerlo te puedes apoyar de software como Surfer, solo recuerda, que al final necesitaras saber las coordenadas UTM del centro de cada prisma, guarda un archivo `prismas.txt` con el número de prisma y su coordenada al centro del mismo.
 
-El segundo paso consiste en asignar la topografía promedio del área correspondiente a cada prisma. Puedes hacer una interpolación del tipo nearest neighbor.
+El segundo paso consiste en asignar la topografía promedio del área correspondiente a cada prisma. Puedes hacer una interpolación del tipo nearest neighbor, de manera que al final tengas un archivo `topografia.txt` que contenga las columnas: número de prisma y valor de la elevación.
 
-El siguiente paso consiste en asignar a cada prisma una unidad geologica aflorante según tu mapa geologica y las capas que propusiste a utilizar, recuerda que entre más capas, el modelo podría no distinguirlas unas de otras.
+El siguiente paso consiste en asignar a cada prisma una unidad geologica aflorante según tu mapa geológico y las capas que propusiste a utilizar, recuerda que entre más capas, el modelo podría no distinguirlas unas de otras. Deberás tener un archivo del tipo `capa1.txt` para cada una de las capas de tu modelo, de manera que contenga únicamente una columna con los prismas asignados a esa unidad.
 
 #### Generar los archivos de restricciones de capas
 
