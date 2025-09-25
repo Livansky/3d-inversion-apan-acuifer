@@ -49,7 +49,7 @@ Donde cada variable representa lo siguiente:
 
 
 #### b) Restricciones de búsqueda
-Al emplear técnicas de optimización restringida (programación cuadrática) Gmlayers permite imponer restricciones a los parámetros para reducir la búsqueda y asegurar la factibilidad del modelo. Estas restricciones se aplican como condiciones de desigualdad:
+Al emplear técnicas de optimización restringida (programación cuadrática) `gmlayers` permite imponer restricciones a los parámetros para reducir la búsqueda y asegurar la factibilidad del modelo. Estas restricciones se aplican como condiciones de desigualdad:
 
 $$\mathbf{m}_{\text{min}} \leq \mathbf{m} \leq \mathbf{m}_{\text{max}}, \quad \Delta \mathbf{m}_{\text{min}} \leq \Delta \mathbf{m} \leq \Delta \mathbf{m}_{\text{max}}$$
 
@@ -85,7 +85,7 @@ donde $\(d_i\)$ son los datos observados, $\(\hat{d}_i\)$ son los datos predicho
 
 3. Cuando la suavidad del modelo es adecuada, evaluada mediante los términos de regularización que penalizan grandes variaciones en las profundidades de los prismas.
 
-El algoritmo Gmlayers tiene la capacidad de manejar estructuras tridimensionales donde los límites de los prismas que definen el subsuelo no están restringidos a ser planos o simples, sino que deben adaptarse mejor a las estructuras tanto conocidas como esperadas. 
+El algoritmo `gmlayers` tiene la capacidad de manejar estructuras tridimensionales donde los límites de los prismas que definen el subsuelo no están restringidos a ser planos o simples, sino que deben adaptarse mejor a las estructuras tanto conocidas como esperadas. 
 
 
 > **Referencias clave:**
@@ -95,33 +95,73 @@ El algoritmo Gmlayers tiene la capacidad de manejar estructuras tridimensionales
 
 </div>
 
-## Mis Herramientas de Visualización
-
-El algoritmo `gmlayers` produce archivos de texto con las profundidades de las interfaces para cada prisma del modelo. Para interpretar estos resultados, desarrollé dos herramientas en Python:
-
-1.  **`visualizador_cortes.py`**: Este script toma el archivo de salida del modelo y genera secciones transversales (cortes geológicos) en cualquier dirección (N-S o E-W), permitiendo visualizar la estructura interna de la cuenca.
-2.  **`generador_mapas_espesor.py`**: Esta herramienta calcula y grafica los mapas de espesores para cada una de las capas geológicas definidas en el modelo, ayudando a identificar las zonas de mayor acumulación de materiales.
-
 ## Instalación
 
 Para utilizar estas herramientas, clona el repositorio y asegúrate de tener las dependencias necesarias.
 
 ```bash
-git clone [https://github.com/tu-usuario/modelo-acuifero-apan.git](https://github.com/tu-usuario/modelo-acuifero-apan.git)
-cd modelo-acuifero-apan
+git clone git@github.com:Livansky/3d-inversion-apan-acuifer.git
+cd 3d-inversion-apan-acuifer
 pip install -r requirements.txt
 ```
 
 ## Uso y Ejemplos
 
-La forma más sencilla de ver cómo funcionan las herramientas es a través del Jupyter Notebook incluido en la carpeta `/notebooks`.
+### Qué necesitas tener antes de empezar?
 
-**`notebooks/2_Visualizacion_del_Modelo.ipynb`**
+#### Datos Gravimétricos: 
 
-En este notebook se muestra un ejemplo completo:
-* Carga de un archivo de salida de `gmlayers` de muestra (de `datos/gmlayers_output_muestra.txt`).
-* Uso de la herramienta `visualizador_cortes` para generar un perfil.
-* Uso de la herramienta `generador_mapas_espesor` para crear el mapa de la capa de sedimentos.
+Un archivo de texto `gfield.txt` con columnas para las coordenadas UTM (Norte, Este en km), la elevación (Z en km), el valor de la anomalía (g en mgal) y su incertidumbre (sg en mgal).
+
+
+#### Datos Magnéticos: 
+
+Un archivo de texto `mfield.txt` similar al de gravedad, pero que además incluya al inicio los valores de inclinación y declinación del campo geomagnético, para la fecha y ubicación de los datos.
+
+
+#### Modelo Geológico Conceptual: 
+
+Una definición clara de las capas geológicas que usarás en el modelo, ordenadas de la más superficial a la más profunda. Para cada capa, necesitas una estimación inicial de sus propiedades (densidad y magnetización)
+
+![Texto alternativo](/images/layers.png)
+
+#### Geología Superficial y Topografía: 
+
+Un mapa geológico del área para saber qué unidad geológica aflora en cada punto y un modelo digital de elevación para conocer la topografía.
+
+### Pasos para realizar la inversión usando el algoritmo gmlayers
+
+#### Discretizar el modelo y la geología
+
+El primer paso es crear una rejilla regular sobre tu area de estudio de n filas por m columnas, tú decides el tamaño de los prismas en km y la cantidad. Para hacerlo te puedes apoyar de software como Surfer, solo recuerda, que al final necesitaras saber las coordenadas UTM del centro de cada prisma, guarda un archivo `prismas.txt` con el número de prisma y su coordenada al centro del mismo.
+
+El segundo paso consiste en asignar la topografía promedio del área correspondiente a cada prisma. Puedes hacer una interpolación del tipo nearest neighbor, de manera que al final tengas un archivo `topografia.txt` que contenga las columnas: número de prisma y valor de la elevación.
+
+El siguiente paso consiste en asignar a cada prisma una unidad geologica aflorante según tu mapa geológico y las capas que propusiste a utilizar, recuerda que entre más capas, el modelo podría no distinguirlas unas de otras. Deberás tener un archivo del tipo `capa1.txt` para cada una de las capas de tu modelo, de manera que contenga únicamente una columna con los prismas asignados a esa unidad.
+
+#### Generar los archivos de restricciones de capas
+
+ejecuta `program1.exe` para cada
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Resultados de la Tesis
 
@@ -134,6 +174,15 @@ A continuación se muestran algunos de los resultados generados con estas herram
 **Sección Geológica A-A'**
 ![Corte geológico A-A'](imagenes/resultado_corte_A-A.png)
 *Esta sección muestra claramente la estructura de graben de la cuenca, delimitada por la falla Apan-Tlaloc.*
+
+## Mis Herramientas de Visualización
+
+El algoritmo `gmlayers` produce archivos de texto con las profundidades de las interfaces para cada prisma del modelo. Para interpretar estos resultados, desarrollé dos herramientas en Python:
+
+1.  **`visualizador_cortes.py`**: Este script toma el archivo de salida del modelo y genera secciones transversales (cortes geológicos) en cualquier dirección (N-S o E-W), permitiendo visualizar la estructura interna de la cuenca.
+2.  **`generador_mapas_espesor.py`**: Esta herramienta calcula y grafica los mapas de espesores para cada una de las capas geológicas definidas en el modelo, ayudando a identificar las zonas de mayor acumulación de materiales.
+
+
 
 ## Contacto
 
