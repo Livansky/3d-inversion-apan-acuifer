@@ -109,15 +109,23 @@ pip install -r requirements.txt
 
 ### Qué necesitas tener antes de empezar?
 
-Datos Gravimétricos: Un archivo de texto `gfield.txt` con columnas para las coordenadas UTM (Norte, Este en km), la elevación (Z en km), el valor de la anomalía (g en mgal) y su incertidumbre (sg en mgal).
+#### Datos Gravimétricos: 
+
+Un archivo de texto `gfield.txt` con columnas para las coordenadas UTM (Norte, Este en km), la elevación (Z en km), el valor de la anomalía (g en mgal) y su incertidumbre (sg en mgal).
 
 
-Datos Magnéticos: Un archivo de texto `mfield.txt` similar al de gravedad, pero que además incluya al inicio los valores de inclinación y declinación del campo geomagnético, para la fecha y ubicación de los datos.
+#### Datos Magnéticos: 
+
+Un archivo de texto `mfield.txt` similar al de gravedad, pero que además incluya al inicio los valores de inclinación y declinación del campo geomagnético, para la fecha y ubicación de los datos.
 
 
-Modelo Geológico Conceptual ⛰️: Una definición clara de las capas geológicas que usarás en el modelo, ordenadas de la más superficial a la más profunda. Para cada capa, necesitas una estimación inicial de sus propiedades (densidad y magnetización)
+#### Modelo Geológico Conceptual: 
 
-Geología Superficial y Topografía: Un mapa geológico del área para saber qué unidad geológica aflora en cada punto y un modelo digital de elevación para conocer la topografía.
+Una definición clara de las capas geológicas que usarás en el modelo, ordenadas de la más superficial a la más profunda. Para cada capa, necesitas una estimación inicial de sus propiedades (densidad y magnetización)
+
+#### Geología Superficial y Topografía: 
+
+Un mapa geológico del área para saber qué unidad geológica aflora en cada punto y un modelo digital de elevación para conocer la topografía.
 
 
 
