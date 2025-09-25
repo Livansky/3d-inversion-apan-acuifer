@@ -1,37 +1,52 @@
+<div align="justify">
+
 # Modelo 3D del Acuífero de Apan mediante Inversión Conjunta de Datos Geofísicos
 
-![Banner con un mapa de la tesis](/images/unnamed.png)
 
 Este repositorio contiene las herramientas desarrolladas como parte de mi tesis de licenciatura para la visualización, análisis e interpretación de un modelo geofísico del acuífero de Apan, Hidalgo. El modelo fue generado utilizando el algoritmo `gmlayers` a partir de la inversión conjunta tridimensional de datos gravimétricos y magnéticos.
 
 ##  Motivación
 
-El acuífero de Apan es una reserva de agua estratégica para la Cuenca del Valle de México. Sin embargo, su geometría tridimensional y sus características internas son poco conocidas. Este proyecto tuvo como objetivo principal generar un modelo detallado para delimitar la extensión de la cuenca y las unidades geológicas que la conforman, así como la estructura subterranea del acuífero, aportando información crucial para la actualización de los modelos existentes del acuifero y una futura gestión sostenible de los recursos hídricos del estado de Hidalgo.
+El acuífero de Apan es una reserva de agua estratégica para la Cuenca del Valle de México. Sin embargo, su geometría tridimensional y sus características internas son poco conocidas. Este proyecto tuvo como objetivo principal generar un modelo detallado para delimitar la extensión de la cuenca y las unidades geológicas que la conforman, así como la estructura subterránea del acuífero, aportando información crucial para la actualización de los modelos existentes del acuifero y una futura gestión sostenible de los recursos hídricos del estado de Hidalgo.
 
 ## Funcionamiento del algoritmo
 
-El método se basa en el algoritmo de inversión conjunta propuesto por Gallardo et al. (2003, 2005), el cual minimiza una función objetivo, la cual busca reducir la suma cuadrática de la diferencia entre los datos gravimétricos y magnéticos observados y aquellos calculados para el modelo del subsuelo. El algoritmo privilegia los modelos de variaciones suaves de los relieves de cada capa; lo que se controla a través de parámetros de regularización. Estos parámetros son seleccionados por el usuario, quien a través de experimentación debe buscar que los relieves sean suaves, pero geológicamente razonables.
+El método se basa en el algoritmo de inversión conjunta propuesto por Gallardo et al. (2003, 2005), el cual minimiza una función objetivo, la cual busca reducir la suma cuadrática de la diferencia entre los datos gravimétricos y magnéticos observados y aquellos calculados para el modelo del subsuelo. El algoritmo prioriza los modelos de variaciones suaves de los relieves de cada capa; lo que se controla a través de parámetros de regularización. Estos parámetros son seleccionados por el usuario, quien a través de experimentación debe buscar que los relieves sean suaves, pero geológicamente razonables.
 
 ### Definición del modelo inicial
-El modelo del subsuelo se construye a partir de un conjunto de prismas rectangulares que definen una serie de capas geológicas, donde cada capa posee propiedades físicas (densidad y magnetización) 
+El modelo del subsuelo se construye a partir de un conjunto de prismas rectangulares que definen una serie de capas geológicas, donde cada capa posee propiedades físicas (densidad y magnetización). La densidad de cada capa no es necesariamente constante, sino que se modela como una función cuadrática de la profundidad (z): 
 
-La densidad de cada capa no es necesariamente constante, sino que se modela como una función cuadrática de la profundidad (z): 
-<p align="center">
 $\rho(z)=a+bz+cz^{2}$
-</p>
+
 y un vector de magnetización:
-<p align="center">
+
 $\mathbf{M} = M_x \hat{\mathbf{i}} + M_y \hat{\mathbf{j}} + M_z \hat{\mathbf{k}}$,
-</p>
+
 
 que pueden variar con la profundidad. La inversión busca determinar la profundidad de las interfaces superior $$(h_t)$$ e inferior $$(h_b)$$ entre estas capas.
 
 El modelo inicial se construye utilizando datos geológicos y geofísicos previos, que permiten establecer una primera estimación razonable de estos tres elementos para cada capa. Constituyen el punto de partida y definen la zona de búsqueda para la actualización automática del modelo empleando optimización iterativa que se lleva a cabo considerando los siguientes elementos:
 
 #### a) Función objetivo
-En cada iteración, Gmlayers actualiza el modelo empleando un algoritmo de programación cuadrática el cual se basa en reducir la función objetivo, que combina el desajuste a los datos observados y la rugosidad del relieve de cada capa. La función objetivo (F) a minimizar se define como:
+En cada iteración, Gmlayers actualiza el modelo empleando un algoritmo de programación cuadrática (Gill et al., 1986), el cual se basa en reducir la función objetivo, que combina el desajuste a los datos observados y la rugosidad del relieve de cada capa. La función objetivo (F) a minimizar se define como:
 
 $$\mathbf{F}(\mathbf{m}) = \min  \| \mathbf{d}_g - \mathbf{g}_z(\mathbf{m}) \|^2_{\mathbf{C}^{-1}_{ddg}} + \| \mathbf{d}_T - \mathbf{T}_t(\mathbf{m}) \|^2_{\mathbf{C}^{-1}_{ddT}} + \| \mathbf{D} \mathbf{m} \|^2_{\mathbf{C}^{-1}_{DD}} + \| \mathbf{m} - \mathbf{m}_R \|^2_{\mathbf{C}^{-1}_{RR}}$$
+
+Donde cada variable representa lo siguiente:
+
+| Símbolo      | Descripción                                                |
+|-------------|------------------------------------------------------------|
+| $d_g$         | Vector de los datos de gravedad observados                |
+| $m$           | Modelo (profundidad a cada prisma para cada capa)         |
+| $g_z(m)$      | Respuesta gravimétrica del modelo actual                  |
+| $C⁻¹_{ddg}$     | Matriz de covarianza de los datos de gravedad             |
+| $d_T$         | Vector de los datos magnéticos observados                |
+| $T_t(m)$      | Respuesta magnética del modelo actual                     |
+| $C⁻¹_{ddT}$     | Matriz de covarianza de los datos magnéticos             |
+| $D$           | Operador de suavidad                                      |
+| $m_R$         | Modelo a priori                                           |
+| $C⁻¹_{RR}$      | Matriz de covarianza del modelo a priori                 |
+
 
 #### b) Restricciones de búsqueda
 Al emplear técnicas de optimización restringida (programación cuadrática) Gmlayers permite imponer restricciones a los parámetros para reducir la búsqueda y asegurar la factibilidad del modelo. Estas restricciones se aplican como condiciones de desigualdad:
@@ -57,9 +72,12 @@ El proceso iterativo de ajuste continúa hasta que se alcanza la convergencia, e
 
 
 1. Cuando el ajuste entre los datos observados y los modelados es comparable con el nivel de error esperado en los datos. Esto se evalúa mediante el error cuadrático medio normalizado (RMS):
+   
 <p align="center">
- $RMS = \sqrt{\frac{\sum_{i=1}^n \left( d_i - \hat{d}_i \right)^2}{n}}$,
+  $RMS = \sqrt{\frac{\sum_{i=1}^n \left( d_i - \hat{d}_i \right)^2}{n}}$,
 </p>
+
+
 
 donde $\(d_i\)$ son los datos observados, $\(\hat{d}_i\)$ son los datos predichos por el modelo, y $\(n\)$ es el número total de datos.
 
@@ -67,13 +85,15 @@ donde $\(d_i\)$ son los datos observados, $\(\hat{d}_i\)$ son los datos predicho
 
 3. Cuando la suavidad del modelo es adecuada, evaluada mediante los términos de regularización que penalizan grandes variaciones en las profundidades de los prismas.
 
-El algoritmo Gmlayers tiene la capacidad de manejar estructuras tridimensionales donde los límites de los prismas que definen el subsuelo no están restringidos a ser planos o simples, sino que deben adaptarse mejor a las estructuras tanto conocidas como esperadas 
+El algoritmo Gmlayers tiene la capacidad de manejar estructuras tridimensionales donde los límites de los prismas que definen el subsuelo no están restringidos a ser planos o simples, sino que deben adaptarse mejor a las estructuras tanto conocidas como esperadas. 
 
 
 > **Referencias clave:**
 > * Gallardo-Delgado, L.A., Pérez-Flores, M.A., & Gómez-Treviño, E. (2003). A versatile algorithm for joint 3D inversion of gravity and magnetic data. *GEOPHYSICS, 68(3)*, 949-959.
 > * Gallardo, L.A., Pérez-Flores, M.A., & Gómez-Treviño, E. (2005). Refinement of three-dimensional multilayer models of basins and crustal environments by inversion of gravity and magnetic data. *Tectonophysics, 397(1-2)*, 37-54. 
-> * 
+> * Gill, P. E., Murray, W., Saunders, M. A., & Wright, M. H. (1986). Fortran package for constrained linear least-squares and convex quadratic programming: User’s guide for LSSOL (Version 1.0) (Tech. Rep.). Systems Optimization Laboratory, Stanford University. https://stanford.edu/group/SOL/guides/lssol.pdf.
+
+</div>
 
 ## Mis Herramientas de Visualización
 
