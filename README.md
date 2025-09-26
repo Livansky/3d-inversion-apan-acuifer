@@ -136,6 +136,8 @@ Un mapa geológico del área para saber qué unidad geológica aflora en cada pu
 
 El primer paso es crear una rejilla regular sobre tu area de estudio de n filas por m columnas, tú decides el tamaño de los prismas en km y la cantidad. Para hacerlo te puedes apoyar de software como Surfer, solo recuerda, que al final necesitaras saber las coordenadas UTM del centro de cada prisma, guarda un archivo `prismas.txt` con el número de prisma y su coordenada al centro del mismo.
 
+![Texto alternativo](/images/prismas.png)
+
 El segundo paso consiste en asignar la topografía promedio del área correspondiente a cada prisma. Puedes hacer una interpolación del tipo nearest neighbor, de manera que al final tengas un archivo `topografia.txt` que contenga las columnas: número de prisma y valor de la elevación.
 
 El siguiente paso consiste en asignar a cada prisma una unidad geologica aflorante según tu mapa geológico y las capas que propusiste a utilizar, recuerda que entre más capas, el modelo podría no distinguirlas unas de otras. Deberás tener un archivo del tipo `capa1.txt` para cada una de las capas de tu modelo, de manera que contenga únicamente una columna con los prismas asignados a esa unidad.
