@@ -123,7 +123,9 @@ Un archivo de texto `mfield.txt` similar al de gravedad, pero que además incluy
 
 Una definición clara de las capas geológicas que usarás en el modelo, ordenadas de la más superficial a la más profunda. Para cada capa, necesitas una estimación inicial de sus propiedades (densidad y magnetización)
 
-![Texto alternativo](/images/layers.png)
+<div align="center">
+  <img src="/images/layers.png" alt="topografiadiscreta" width="300">
+</div>
 
 
 #### Geología Superficial y Topografía: 
@@ -136,16 +138,23 @@ Un mapa geológico del área para saber qué unidad geológica aflora en cada pu
 
 El primer paso es crear una rejilla regular sobre tu area de estudio de n filas por m columnas, tú decides el tamaño de los prismas en km y la cantidad. Para hacerlo te puedes apoyar de software como Surfer, solo recuerda, que al final necesitaras saber las coordenadas UTM del centro de cada prisma, guarda un archivo `prismas.txt` con el número de prisma y su coordenada al centro del mismo.
 
-![Texto alternativo](/images/prismas.png)
+<div align="center">
+  <img src="/images/prismas.png" alt="topografiadiscreta" width="400">
+</div>
+
 
 El segundo paso consiste en asignar la topografía promedio del área correspondiente a cada prisma. Puedes hacer una interpolación del tipo nearest neighbor, de manera que al final tengas un archivo `topografia.txt` que contenga las columnas: número de prisma y valor de la elevación.
+
+<div align="center">
+  <img src="/images/topografia.png" alt="topografiadiscreta" width="500">
+</div>
+
 
 El siguiente paso consiste en asignar a cada prisma una unidad geologica aflorante según tu mapa geológico y las capas que propusiste a utilizar, recuerda que entre más capas, el modelo podría no distinguirlas unas de otras. Deberás tener un archivo del tipo `capa1.txt` para cada una de las capas de tu modelo, de manera que contenga únicamente una columna con los prismas asignados a esa unidad.
 
 #### Generar los archivos de restricciones de capas
 
-ejecuta `program1.exe` para cada
-
+ejecuta `program1.exe` solicitará una serie de parámetros de entrada que incluyen el nombre de archivo de salida, que contendrá los parámetros geométricos de la base de la capa; el número de la capa; el número de prismas,  los valores $x_{\text{min}}$, $x_0$ y $x_{\text{max}}$ de la base de la capa i.e., el caso donde aflora cualquier unidad por debajo de la capa que se está trabajando), los cuales pueden ser constantes o variables. Si el valor se toma de la topografía, se digita 10,000;  la desviación estándar ($sx0$); los espesores mínimo y máximo ($Esp_{{min}}$, $Esp_{{max}}$) de la base; y por último, se solicita el archivo que contenga la información topográfica-batimétrica \emph{i.e.}, el número de prisma y su elevación correspondiente
 
 
 
