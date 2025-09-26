@@ -104,10 +104,11 @@ git clone git@github.com:Livansky/3d-inversion-apan-acuifer.git
 cd 3d-inversion-apan-acuifer
 pip install -r requirements.txt
 ```
-
+<div align="justify">
+   
 ## Uso y Ejemplos
 
-### Qué necesitas tener antes de empezar?
+### ¿Qué necesitas tener antes de empezar?
 
 #### Datos Gravimétricos: 
 
@@ -150,15 +151,15 @@ El segundo paso consiste en asignar la topografía promedio del área correspond
 </div>
 
 
-El siguiente paso consiste en asignar a cada prisma una unidad geologica aflorante según tu mapa geológico y las capas que propusiste a utilizar, recuerda que entre más capas, el modelo podría no distinguirlas unas de otras. Deberás tener un archivo del tipo `capa1.txt` para cada una de las capas de tu modelo, de manera que contenga únicamente una columna con los prismas asignados a esa unidad.
+El siguiente paso consiste en asignar a cada prisma una unidad geológica aflorante según tu mapa geológico y las capas que propusiste a utilizar, recuerda que entre más capas, el modelo podría no distinguirlas unas de otras. Deberás tener un archivo del tipo `capa1.txt` para cada una de las capas de tu modelo, de manera que contenga únicamente una columna con los prismas asignados a esa unidad.
 
 #### Generar los archivos de restricciones de capas
 
-ejecuta `program1.exe` solicitará una serie de parámetros de entrada que incluyen el nombre de archivo de salida, que contendrá los parámetros geométricos de la base de la capa; el número de la capa; el número de prismas,  los valores $x_{\text{min}}$, $x_0$ y $x_{\text{max}}$ de la base de la capa i.e., el caso donde aflora cualquier unidad por debajo de la capa que se está trabajando), los cuales pueden ser constantes o variables. Si el valor se toma de la topografía, se digita 10,000;  la desviación estándar ($sx0$); los espesores mínimo y máximo ($Esp_{{min}}$, $Esp_{{max}}$) de la base; y por último, se solicita el archivo que contenga la información topográfica-batimétrica \emph{i.e.}, el número de prisma y su elevación correspondiente
+ejecuta `program1.exe` este solicitará una serie de parámetros geométricos de la base de la capa; el número de la capa; el número de prismas, los valores $x_{\text{min}}$, $x_0$ y $x_{\text{max}}$ de la base de la capa i.e., el caso donde aflora cualquier unidad por debajo de la capa que se está trabajando), los cuales pueden ser constantes o variables. Si el valor se toma de la topografía, se digita 10,000;  la desviación estándar ($sx0$); los espesores mínimo y máximo ($Esp_{{min}}$, $Esp_{{max}}$) de la base; y por último, se solicita el archivo que contenga la información topográfica-batimétrica \emph{i.e.}, el número de prisma y su elevación correspondiente `topografia.txt`. Este programa se ejecuta una vez por capa
 
+Posteriormente, ejecuta `program2.exe`, el objetivo de este segundo programa es asegurar que los prismas que están aflorando, i.e., los que corresponden a la geología superficial observada en los mapas geológicos tengan las restricciones necesarias y el modelo refleje correctamente las condiciones observadas. Dado que se trabaja con múltiples capas, existen varios casos a considerar además del caso base (i.e., cuando aflora cualquier unidad por debajo de la capa a trabajar). El siguiente caso a considerar es cuando aflora la unidad que se está trabajando; para ello, se vuelve a ejecutar el programa, pero ahora utilizando como archivo de entrada el archivo que resultó de la primera iteración (donde se empleó el archivo generado por el primer programa). Posteriormente, por cada unidad que aflora por encima de la capa en cuestión, se repite el proceso utilizando el archivo de entrada generado en la ejecución anterior. Finalmente, el archivo resultante para cada capa se pega por debajo del archivo anterior y una vez todos juntos se pega por debajo del archivo `Model.txt`
 
-
-
+Para más detalles sobre este procedimiento puede consultar https://tesiunamdocumentos.dgb.unam.mx/ptd2025/abr_jun/0870941/Index.html
 
 
 
@@ -199,3 +200,5 @@ El algoritmo `gmlayers` produce archivos de texto con las profundidades de las i
 ## Contacto
 
 [Tu Nombre] - [Tu Email] - [Link a tu LinkedIn]
+
+</div>
